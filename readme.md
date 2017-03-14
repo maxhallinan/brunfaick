@@ -15,8 +15,7 @@ $ npm install --save brainfuck-interpreter
 ```js
 const brainfuck = require('brainfuck-interpreter');
 
-brainfuck('++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.
-');
+brainfuck('++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.');
 //=> 'Hello World!'
 ```
 
@@ -50,10 +49,10 @@ $ npm install --global brainfuck-interpreter
 
 ```
 $ brainfuck-interpreter --help
-	Usage
-	  $ brainfuck-interpeter [program]
+  Usage
+    $ brainfuck-interpeter [program]
 
-	Options
+  Options
     -i, --input
       Input provided to [program] during execution.
 
