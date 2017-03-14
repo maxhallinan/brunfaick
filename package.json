@@ -14,7 +14,8 @@
     "node": ">=4"
   },
   "scripts": {
-    "test": "xo && nyc ava"
+    "test": "xo && nyc ava",
+    "test-dev": "nyc ava --watch"
   },
   "files": [
     "index.js",
@@ -34,5 +35,23 @@
     "ava": "^0.17.0",
     "nyc": "^10.0.0",
     "xo": "^0.17.0"
+  },
+  "xo": {
+    "esnext": true,
+    "space": 2,
+    "rules": {
+      "array-bracket-spacing": [
+        "error",
+        "always"
+      ],
+      "comma-dangle": [
+        "error",
+        "always"
+      ],
+      "object-curly-spacing": [
+        "error",
+        "always"
+      ]
+    }
   }
 }

@@ -1,11 +1,15 @@
 'use strict';
 
-module.exports = (input, opts) => {
-	if (typeof input !== 'string') {
-		throw new TypeError(`Expected a string, got ${typeof input}`);
-	}
+const interpret = require('./interpret');
 
-	opts = opts || {};
+module.exports = (program, input = '') => {
+  if (typeof program !== 'string') {
+    throw new TypeError(`Expected a string, got ${typeof program}`);
+  }
 
-	return input;
+  if (input && typeof input !== 'string') {
+    throw new TypeError(`Expected a string, got ${typeof input}`);
+  }
+
+  return interpret(program)(input);
 };

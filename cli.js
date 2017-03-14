@@ -2,7 +2,7 @@
 'use strict';
 
 const meow = require('meow');
-const interpreter = require('.');
+const brainfuck = require('.');
 
 const help = `
 	Usage
@@ -20,9 +20,12 @@ const help = `
 const opts = {
   alias: {
     i: 'input',
-  }
+  },
 };
 
 const cli = meow(help, opts);
 
-console.log(interpreter(cli.input[0], cli.flags));
+const program = cli.input[0];
+const input = cli.flags.input;
+
+console.log(brainfuck(program, input));
