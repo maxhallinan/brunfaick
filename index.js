@@ -1,6 +1,6 @@
 'use strict';
 
-const interpret = require('./interpret');
+const interpret = require('./interpreter');
 
 module.exports = (program, input = '') => {
   if (typeof program !== 'string') {
