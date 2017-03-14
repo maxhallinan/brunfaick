@@ -1,0 +1,38 @@
+{
+  "name": "brainfuck-interpreter",
+  "version": "0.0.0",
+  "description": "A Brainfuck interpreter implemented in JavaScript",
+  "license": "MIT",
+  "repository": "maxhallinan/brainfuck-interpreter",
+  "author": {
+    "name": "Max Hallinan",
+    "email": "maxhallinan@riseup.net",
+    "url": "github.com/maxhallinan"
+  },
+  "bin": "cli.js",
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "test": "xo && nyc ava"
+  },
+  "files": [
+    "index.js",
+    "cli.js"
+  ],
+  "keywords": [
+    "cli-app",
+    "cli",
+    "brainfuck",
+    "brainfuck interpreter",
+    "esolangs"
+  ],
+  "dependencies": {
+    "meow": "^3.7.0"
+  },
+  "devDependencies": {
+    "ava": "^0.17.0",
+    "nyc": "^10.0.0",
+    "xo": "^0.17.0"
+  }
+}
