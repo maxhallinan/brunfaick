@@ -5,16 +5,16 @@ const meow = require('meow');
 const brainfuck = require('.');
 
 const help = `
-	Usage
-	  $ brainfuck-interpeter [program]
+  Usage
+    $ brainfuck-interpeter [program]
 
-	Options
+  Options
     -i, --input
       Input provided to [program] during execution.
 
-	Examples
+  Examples
     $ brainfuck-interpreter ++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.
-    Hello World!
+      Hello World!
 `;
 
 const opts = {

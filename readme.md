@@ -56,9 +56,9 @@ $ brainfuck-interpreter --help
     -i, --input
       Input provided to [program] during execution.
 
-	Examples
+  Examples
     $ brainfuck-interpreter ++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.
-    Hello World!
+      Hello World!
 ```
 
 
