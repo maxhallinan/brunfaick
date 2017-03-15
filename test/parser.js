@@ -1,6 +1,6 @@
-const test = require('ava');
 const clean = require('../parser/clean');
 const lex = require('../parser/lex');
+const test = require('ava');
 
 test('parser#clean', t => {
   const input = `
@@ -79,13 +79,13 @@ test('parser#lex', t => {
     }, {
       type: 'LOOP_END',
     }, {
-      type: 'MOVE_RIGHT',
-    }, {
       type: 'MOVE_LEFT',
+    }, {
+      type: 'MOVE_RIGHT',
     }, {
       type: 'OUTPUT',
     },
   ];
 
-  t.is(result, expected);
+  t.deepEqual(result, expected);
 });
