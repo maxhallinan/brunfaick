@@ -62,4 +62,4 @@ $ brainfuck-interpreter --help
 
 ## License
 
-MIT © [Maximum Hallinan](https://github.com/maxhallinan)
+MIT © [Max Hallinan](https://github.com/maxhallinan)
