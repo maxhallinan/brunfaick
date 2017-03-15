@@ -22,7 +22,7 @@ brainfuck('++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+
 
 ## API
 
-### brainfuck(program, [options])
+### brainfuck(program, input)
 
 #### program
 
@@ -30,9 +30,7 @@ Type: `string`
 
 A string of Brainfuck commands.
 
-#### options
-
-##### input
+#### input
 
 Type: `string`<br>
 Default: `undefined`
