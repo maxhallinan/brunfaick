@@ -2,9 +2,23 @@ const _ = module.exports;
 
 _.arrToStr = arr => arr.join('');
 
-_.assign = (...args) => Object.assign(...args);
+_.assign = target => (...sources) => Object.assign(target, ...sources);
 
 _.compose = (...fns) => x => [ ...fns, ].reverse().reduce((x, fn) => fn(x), x);
+
+_.curry = function (fn, arity = fn.length) {
+  let args = [];
+
+  return function curried(...nextArgs) {
+    args = [ ...args, ...nextArgs, ];
+
+    if (args.length >= arity) {
+      return fn(...args);
+    }
+
+    return curried;
+  };
+};
 
 _.filter = test => collection => collection.filter(test);
 

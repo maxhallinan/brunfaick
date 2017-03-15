@@ -1,4 +1,4 @@
-const { assign, compose, partial, set, } = require('../util');
+const { assign, compose, set, } = require('../util');
 
 const initialState = {
   input: '',
@@ -9,7 +9,7 @@ const initialState = {
 
 const initState = compose(
   // merge initialState and input object
-  partial(assign)(initialState),
+  assign(initialState),
   // wrap input string in an object
   set({})('input')
 );
