@@ -1,9 +1,20 @@
 const { compose, } = require('../util');
 const initState = require('./init-state');
+// const commands = require('./commands');
 
-const interpret = ast => compose(
-  state => [ JSON.stringify(ast), JSON.stringify(state), ],
+// const runLoop = curry(() => {});
+
+// getNextState :: State -> Token -> State
+// const getNextState = (lastState, token) => {
+//   const { body, type, } = token;
+
+//   if (type === 'LOOP') {
+//     return runLoop();
+//   }
+
+//   return map(lastState, commands[type]);
+// };
+
+module.exports = compose(
   initState
 );
-
-module.exports = interpret;

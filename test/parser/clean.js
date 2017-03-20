@@ -1,8 +1,7 @@
-const clean = require('../parser/clean');
-const lex = require('../parser/lex');
 const test = require('ava');
+const clean = require('../../parser/clean');
 
-test('parser#clean', t => {
+test('Removes all characters that aren\'t Brainfuck commands', t => {
   const input = `
   [
   This program prints "Hello World!" and a newline to the screen, its
@@ -49,43 +48,17 @@ test('parser#clean', t => {
   >++.                    And finally a newline from Cell #6
   `;
 
-  const expected = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
-
   const result = clean(input);
 
-  t.is(result, expected);
+  const expected = '++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.';
 
+  t.is(result, expected);
+});
+
+test('Throws an error if the initial comment block is not closed.', t => {
   const error = t.throws(() => {
     clean('[');
   }, SyntaxError);
 
   t.is(error.message, 'Missing closing loop bracket.');
-});
-
-test('parser#lex', t => {
-  const cmdStr = '-+,[]<>.';
-
-  const result = lex(cmdStr);
-
-  const expected = [
-    {
-      type: 'DECREMENT',
-    }, {
-      type: 'INCREMENT',
-    }, {
-      type: 'INPUT',
-    }, {
-      type: 'LOOP_START',
-    }, {
-      type: 'LOOP_END',
-    }, {
-      type: 'MOVE_LEFT',
-    }, {
-      type: 'MOVE_RIGHT',
-    }, {
-      type: 'OUTPUT',
-    },
-  ];
-
-  t.deepEqual(result, expected);
 });
