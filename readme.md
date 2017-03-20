@@ -1,7 +1,8 @@
 # brainfuck-interpreter
 
-> A Brainfuck interpreter implemented in JavaScript.
+A Brainfuck interpreter implemented in JavaScript.
 
+*Work in progress.*
 
 ## Install
 
