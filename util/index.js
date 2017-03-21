@@ -45,6 +45,9 @@ _.get = src => prop => src[prop];
 // keys :: Object -> Array
 _.keys = obj => Object.keys(obj);
 
+// identity :: a -> a
+_.identity = x => x;
+
 // includes :: [a] -> b -> Bool
 _.includes = arr => item => arr.indexOf(item) > -1;
 
@@ -57,8 +60,8 @@ _.isArray = x => Boolean(x) && x.constructor === Array;
 // log :: a -> a
 _.log = (...args) => x => console.log(...args, x) || x;
 
-// map :: (a -> b) -> [a] -> [b]
-_.map = fn => arr => arr.map(fn);
+// map :: (a -> b) -> Functor a -> Functor b
+_.map = fn => Functor => Functor.map(fn);
 
 // partial :: Function -> [a] -> Function
 _.partial = fn => (...args) => fn.bind(null, ...args);

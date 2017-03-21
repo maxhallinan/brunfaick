@@ -3,7 +3,7 @@ const { output, } = require('../../../interpreter/commands');
 const initState = require('../../../interpreter/init-state');
 const { deepClone, } = require('../../../util');
 
-const initialState = initState('foo');
+const initialState = initState('foo').fold();
 
 test('Sets state.output to the char value of tape[pointer].', t => {
   const lastState = Object.assign(deepClone(initialState), {

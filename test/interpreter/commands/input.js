@@ -3,7 +3,7 @@ const { input, } = require('../../../interpreter/commands');
 const initState = require('../../../interpreter/init-state');
 const { deepClone, } = require('../../../util');
 
-const initialState = initState('foo');
+const initialState = initState('foo').fold();
 
 test('Sets state.tape[pointer] to the charCode for input[0].', t => {
   const lastState = deepClone(initialState);

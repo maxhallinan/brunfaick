@@ -48,6 +48,12 @@
         "error",
         "always"
       ],
+      "new-cap": [
+        "error",
+        {
+          "capIsNew": false
+        }
+      ],
       "object-curly-spacing": [
         "error",
         "always"

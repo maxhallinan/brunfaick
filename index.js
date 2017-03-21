@@ -11,5 +11,5 @@ module.exports = (program, input = '') => {
     throw new TypeError(`Expected a string, got ${typeof input}`);
   }
 
-  return interpret(program)(input);
+  return interpret(input)(program);
 };
