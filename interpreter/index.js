@@ -1,5 +1,6 @@
 const { compose, } = require('../util');
 const initState = require('./init-state');
+const Identity = require('../types/identity');
 // const commands = require('./commands');
 
 // const runLoop = curry(() => {});
@@ -16,5 +17,6 @@ const initState = require('./init-state');
 // };
 
 module.exports = compose(
+  state => Identity(state),
   initState
 );
