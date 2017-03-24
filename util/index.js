@@ -27,6 +27,20 @@ _.curry = function (fn, arity = fn.length) {
   };
 };
 
+_.curryRight = function (fn, arity = fn.length) {
+  let args = [];
+
+  return function curried(...nextArgs) {
+    args = [ ...args, ...nextArgs, ];
+
+    if (args.length >= arity) {
+      return fn(...args.reverse());
+    }
+
+    return curried;
+  };
+};
+
 // deepClone :: a -> a
 _.deepClone = obj => JSON.parse(JSON.stringify(obj));
 
@@ -40,7 +54,7 @@ _.filter = test => collection => collection.filter(test);
 _.fromCharCode = (...nums) => String.fromCharCode(...nums);
 
 // get :: Object -> a -> b
-_.get = src => prop => src[prop];
+_.get = (prop, src) => src[prop];
 
 // keys :: Object -> Array
 _.keys = obj => Object.keys(obj);

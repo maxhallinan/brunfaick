@@ -11,7 +11,7 @@ const cmdTypes = {
   '.': 'OUTPUT',
 };
 
-const symbolToType = get(cmdTypes);
+const symbolToType = type => get(type, cmdTypes);
 
 const typeToToken = type => ({ type, });
 
