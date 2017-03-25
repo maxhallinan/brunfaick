@@ -81,7 +81,7 @@ _.map = fn => Functor => Functor.map(fn);
 _.partial = fn => (...args) => fn.bind(null, ...args);
 
 // reduce :: (b -> a -> b) -> b -> [a] -> b
-_.reduce = fn => init => arr => arr.reduce(fn, init);
+_.reduce = (fn, init, arr) => arr.reduce(fn, init);
 
 // reverse :: Function -> Array -> a
 _.reverse = fn => (...args) => fn(...args.reverse());
