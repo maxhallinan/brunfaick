@@ -1,46 +1,24 @@
-const { reduce, } = require('../util');
+function parse(tokens) {
+  const body = [];
 
-// function parseLoopBody(tokens) {
-//   let body = [];
+  while (tokens.length) {
+    let token = tokens.shift();
 
-//   for (let i = 0; i < tokens.length; i++) {
-//     const token = tokens[i];
-//     const { type, } = token;
+    if (token.type === 'LOOP_START') {
+      token = {
+        type: 'LOOP',
+        body: parse(tokens),
+      };
+    }
 
-//     const isEnd = type === 'LOOP_END';
-//     const isStart = type === 'LOOP_START';
+    if (token.type === 'LOOP_END') {
+      break;
+    }
 
-//     if (isEnd) {
-//       break;
-//     }
+    body.push(token);
+  }
 
-//     if (isStart) {
-//       return parseLoop(tokens.splice(i));
-//     }
+  return body;
+}
 
-//     body.push(token);
-//   }
-
-//   return body;
-// }
-
-// function parseLoop(tokens) {
-//   return {
-//     type: 'LOOP',
-//     body: parseLoopBody(tokens),
-//   };
-// }
-
-// function parse(ast, token, index, tokens) {
-//   const { type, } = token;
-
-//   if (type === 'LOOP_START') {
-//     token = parseLoop(tokens.splice(index + 1));
-//   }
-
-//   ast.push(token);
-
-//   return ast;
-// }
-
-module.exports = tokens => tokens;
+module.exports = parse;

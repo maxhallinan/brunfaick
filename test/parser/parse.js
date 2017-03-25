@@ -1,8 +1,8 @@
 const test = require('ava');
 const parse = require('../../parser/parse');
 
-// '+++[>+++[>++[>++++<-]<-]<-]>>>.'
 test('Converts a list of tokens to an abstract syntax tree', t => {
+  // '+++[>+++[>++[>++++<-]<-]<-]>>>.'
   const tokens = [
     { type: 'INCREMENT', },
     { type: 'INCREMENT', },
@@ -82,5 +82,5 @@ test('Converts a list of tokens to an abstract syntax tree', t => {
 
   const result = parse(tokens);
 
-  t.is(result, expected);
+  t.deepEqual(result, expected);
 });
