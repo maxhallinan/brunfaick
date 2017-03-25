@@ -53,8 +53,8 @@ test('Reduces an abstract syntax tree to program state', t => {
   const expected = initState().map(state => ({
     ...state,
     output: 'H',
-    pointer: 2,
-    tape: [ 0, 0, 72 ],
+    pointer: 3,
+    tape: [ 0, 0, 0, 72, ],
   }));
 
   t.deepEqual(result, expected);

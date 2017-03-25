@@ -17,7 +17,7 @@ Container.prototype.fold = function (fn = identity) {
   return fn(this.x);
 };
 
-// Container.fold :: (a -> b) -> Container b
+// Container.map :: (a -> b) -> Container b
 Container.prototype.map = function (fn) {
   return Container(fn(this.x));
 };
