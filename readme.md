@@ -1,29 +1,30 @@
-# brainfuck-interpreter
+# brunfaick
 
-A Brainfuck interpreter implemented in JavaScript.
+A [Brainfuck](https://en.wikipedia.org/wiki/Brainfuck) interpreter implemented
+in JavaScript.
 
 *Work in progress.*
 
 ## Install
 
 ```
-$ npm install --save brainfuck-interpreter
+$ npm install --save brunfaick
 ```
 
 
 ## Usage
 
 ```js
-const brainfuck = require('brainfuck-interpreter');
+const brunfaick = require('brunfaick');
 
-brainfuck('++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.');
+brunfaick('++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.');
 //=> 'Hello World!'
 ```
 
 
 ## API
 
-### brainfuck(program, input)
+### brunfaick(program, input)
 
 #### program
 
@@ -43,20 +44,20 @@ Input provided to `program` during execution.
 ## CLI
 
 ```
-$ npm install --global brainfuck-interpreter
+$ npm install --global brunfaick
 ```
 
 ```
-$ brainfuck-interpreter --help
+$ brunfaick --help
   Usage
-    $ brainfuck-interpeter [program]
+    $ brunfaick [program]
 
   Options
     -i, --input
       Input provided to [program] during execution.
 
   Examples
-    $ brainfuck-interpreter ++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.
+    $ brunfaick ++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.
       Hello World!
 ```
 

@@ -2,18 +2,18 @@
 'use strict';
 
 const meow = require('meow');
-const brainfuck = require('.');
+const brunfaick = require('.');
 
 const help = `
   Usage
-    $ brainfuck-interpeter [program]
+    $ brunfaick [program]
 
   Options
     -i, --input
       Input provided to [program] during execution.
 
   Examples
-    $ brainfuck-interpreter ++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.
+    $ brunfaick ++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.
       Hello World!
 `;
 
@@ -28,4 +28,4 @@ const cli = meow(help, opts);
 const program = cli.input[0];
 const input = cli.flags.input;
 
-console.log(brainfuck(program, input));
+console.log(brunfaick(program, input));
