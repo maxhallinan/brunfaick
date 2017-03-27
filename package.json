@@ -19,7 +19,11 @@
   },
   "files": [
     "index.js",
-    "cli.js"
+    "cli.js",
+    "interpreter",
+    "parser",
+    "types",
+    "util"
   ],
   "keywords": [
     "cli-app",
