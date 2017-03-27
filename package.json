@@ -1,9 +1,9 @@
 {
-  "name": "brainfuck-interpreter",
+  "name": "brunfaick",
   "version": "0.1.0",
   "description": "A Brainfuck interpreter implemented in JavaScript",
   "license": "MIT",
-  "repository": "maxhallinan/brainfuck-interpreter",
+  "repository": "maxhallinan/brunfaick",
   "author": {
     "name": "Max Hallinan",
     "email": "maxhallinan@riseup.net",
