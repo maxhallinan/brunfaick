@@ -44,7 +44,7 @@
   },
   "xo": {
     "esnext": true,
-    "space": 2,
+    "globals": ["describe", "it"],
     "rules": {
       "array-bracket-spacing": [
         "error",
@@ -64,6 +64,7 @@
         "error",
         "always"
       ]
-    }
+    },
+    "space": 2
   }
 }

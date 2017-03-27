@@ -1,8 +1,9 @@
-const test = require('ava');
+const assert = require('chai').assert;
 const brunfaick = require('../../.');
 
-test('Outputs \'Hello World!\' ending with a newline character.', t => {
-  const result = brunfaick(`
+describe('end-to-end > hello-world.b', () => {
+  it('Should return the expected output.', () => {
+    const program = `
     [ This program prints "Hello World!" and a newline to the screen, its
     length is 106 active command characters. [It is not the shortest.]
 
@@ -46,9 +47,12 @@ test('Outputs \'Hello World!\' ending with a newline character.', t => {
     +++.------.--------.    Cell #3 for 'rl' and 'd'
     >>+.                    Add 1 to Cell #5 gives us an exclamation point
     >++.                    And finally a newline from Cell #6
-  `);
+    `;
 
-  const expected = 'Hello World!\n';
+    const output = brunfaick(program);
 
-  t.is(result, expected);
+    const expected = 'Hello World!\n';
+
+    assert.strictEqual(expected, output);
+  });
 });

@@ -2,7 +2,7 @@ const assert = require('chai').assert;
 const brunfaick = require('../../.');
 
 describe('end-to-end > rot13.b', () => {
-  it('should outputs its code', () => {
+  it('returns expected output', () => {
     const program = `
     ,
     [>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-[>+<-
@@ -31,10 +31,10 @@ describe('end-to-end > rot13.b', () => {
 
     const input = 'foo bar baz';
 
-    const result = brunfaick(program, input);
+    const output = brunfaick(program, input);
 
     const expected = 'sbb one onm';
 
-    assert.strictEqual(result, expected);
+    assert.strictEqual(expected, output);
   });
 });

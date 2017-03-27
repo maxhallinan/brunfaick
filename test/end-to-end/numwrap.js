@@ -1,8 +1,9 @@
-const test = require('ava');
+const assert = require('chai').assert;
 const brunfaick = require('../../.');
 
-test('Outputs the numwrap ascii art.', t => {
-  const program = `
+describe('end-to-end > numwrap.b', () => {
+  it('Should return the expected output.', () => {
+    const program = `
     >>>>+>+++>+++>>>>>+++[
       >,+>++++[>++++<-]>[<<[-[->]]>[<]>-]<<[
         >+>+>>+>+[<<<<]<+>>[+<]<[>]>+[[>>>]>>+[<<<<]>-]+<+>>>-[
@@ -37,14 +38,15 @@ test('Outputs the numwrap ascii art.', t => {
     [Enter a number using ()-./0123456789abcdef and space, and hit return.
     Daniel B Cristofani (cristofdathevanetdotcom)
     http://www.hevanet.com/cristofd/brainfuck/]
-  `;
+    `;
 
-  const input = '123456789';
+    const input = '123456789';
 
-  const result = brunfaick(program, input);
+    const output = brunfaick(program, input);
 
-  const expected = '                /\\\n                \\/\\\n              /\\   \n              \\/\\\n            /\\ \\/\n              \\\n          /    \n          \\/\\\n        /  \\/\n        \\/\\\n       \\  /\n      \\/\\\n    /\\   \n     /\\\n  /\\  /\n   / \n \\ \\/\n  \\\n   \n';
+    const expected = '                /\\\n                \\/\\\n              /\\   \n              \\/\\\n            /\\ \\/\n              \\\n          /    \n          \\/\\\n        /  \\/\n        \\/\\\n       \\  /\n      \\/\\\n    /\\   \n     /\\\n  /\\  /\n   / \n \\ \\/\n  \\\n   \n';
 
-  t.is(result, expected);
+    assert.strictEqual(expected, output);
+  });
 });
 

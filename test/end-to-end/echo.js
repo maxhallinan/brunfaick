@@ -1,20 +1,21 @@
-const test = require('ava');
+const assert = require('chai').assert;
 const brunfaick = require('../../.');
 
-test('Outputs the input string.', t => {
-  const program = `
+describe('end-to-end > echo.b', () => {
+  it('Should return the expected output.', () => {
+    const program = `
     [Echo, promyk.doleczek.pl]
     >+[[>],.----- ----- ---[+++++ +++++ +++[<]]>]
     <<[<]>>
     [.>]
-  `;
+    `;
 
-  const input = 'foo bar baz';
+    const input = 'foo bar baz';
 
-  const result = brunfaick(program, input);
+    const output = brunfaick(program, input);
 
-  const expected = 'foo bar baz\u0000foo bar baz';
+    const expected = 'foo bar baz\u0000foo bar baz';
 
-  t.is(result, expected);
+    assert.strictEqual(expected, output);
+  });
 });
-
