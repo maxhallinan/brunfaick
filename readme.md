@@ -3,8 +3,6 @@
 A [Brainfuck](https://en.wikipedia.org/wiki/Brainfuck) interpreter implemented
 in JavaScript.
 
-*Work in progress.*
-
 ## Install
 
 ```
