@@ -1,5 +1,5 @@
 const test = require('ava');
-const lex = require('../../parser/lex');
+const lex = require('../../../parser/lex');
 
 test('Maps Brainfuck command characters to tokens.', t => {
   const cmdStr = '-+,[]<>.';

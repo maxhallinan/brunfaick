@@ -1,6 +1,6 @@
 const test = require('ava');
-const execute = require('../../interpreter/execute');
-const initState = require('../../interpreter/init-state');
+const execute = require('../../../interpreter/execute');
+const initState = require('../../../interpreter/init-state');
 
 test('Reduces an abstract syntax tree to program state', t => {
   const ast = [

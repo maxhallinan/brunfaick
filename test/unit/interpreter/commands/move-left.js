@@ -1,7 +1,7 @@
 const test = require('ava');
-const { moveLeft, } = require('../../../interpreter/commands');
-const initState = require('../../../interpreter/init-state');
-const { deepClone, } = require('../../../util');
+const { moveLeft, } = require('../../../../interpreter/commands');
+const initState = require('../../../../interpreter/init-state');
+const { deepClone, } = require('../../../../util');
 
 const initialState = initState('foo').fold();
 

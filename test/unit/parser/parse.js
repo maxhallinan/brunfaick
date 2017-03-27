@@ -1,5 +1,5 @@
 const test = require('ava');
-const parse = require('../../parser/parse');
+const parse = require('../../../parser/parse');
 
 test('Converts a list of tokens to an abstract syntax tree', t => {
   // '+++[>+++[>++[>++++<-]<-]<-]>>>.'

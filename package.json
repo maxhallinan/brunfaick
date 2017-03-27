@@ -15,7 +15,7 @@
   },
   "scripts": {
     "test": "xo && nyc ava",
-    "test-dev": "nyc ava --watch"
+    "test-dev": "nyc ava --watch test/unit"
   },
   "files": [
     "index.js",

@@ -1,5 +1,5 @@
 const test = require('ava');
-const clean = require('../../parser/clean');
+const clean = require('../../../parser/clean');
 
 test('Removes all characters that aren\'t Brainfuck commands', t => {
   const input = `
