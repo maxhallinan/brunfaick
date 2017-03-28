@@ -71,6 +71,9 @@ _.increment = num => ++num;
 // isArray :: a -> Bool
 _.isArray = x => Boolean(x) && x.constructor === Array;
 
+// isNan :: x -> Bool
+_.isNan = x => x !== x;
+
 // log :: a -> a
 _.log = (...args) => x => console.log(...args, x) || x;
 

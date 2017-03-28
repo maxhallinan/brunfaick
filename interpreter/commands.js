@@ -3,13 +3,14 @@ const {
   compose,
   decrement,
   increment,
+  isNan,
   fromCharCode,
   partial,
 } = require('../util');
 
 // validateIncrementBite :: Number -> Number
 function validateIncrementBite(bite) {
-  bite = isNaN(bite) ? 1 : bite;
+  bite = isNan(bite) ? 1 : bite;
   bite = bite > 255 ? 0 : bite;
 
   return bite;
@@ -17,7 +18,7 @@ function validateIncrementBite(bite) {
 
 // validateDecrementBite :: Number -> Number
 function validateDecrementBite(bite) {
-  bite = isNaN(bite) ? 255 : bite;
+  bite = isNan(bite) ? 255 : bite;
   bite = bite < 0 ? 255 : bite;
 
   return bite;
@@ -25,7 +26,7 @@ function validateDecrementBite(bite) {
 
 // validatePointer :: Number -> Number
 function validatePointer(pointer) {
-  if (isNaN(pointer) || pointer < 0) {
+  if (isNan(pointer) || pointer < 0) {
     throw new RangeError(
       'Your program used the < command one too many times in a row. ' +
       'There is no memory at cell -1.'
