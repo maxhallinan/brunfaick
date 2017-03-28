@@ -37,7 +37,11 @@ function getNextState(state, command) {
 }
 
 function execute(tokens, state) {
-  return tokens.reduce(getNextState, state);
+  for (let i = 0, j = tokens.length; i < j; i++) {
+    state = getNextState(state, tokens[i]);
+  }
+
+  return state;
 }
 
 module.exports = execute;
