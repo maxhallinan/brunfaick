@@ -110,27 +110,23 @@ function mapOutput(cmd, lastState) {
   return Object.assign({}, lastState, nextState);
 }
 
-// mapInput :: (Function, Object) -> Object
-function mapInput(cmd, lastState) {
-  const { input, pointer, tape, } = lastState;
+// mapInput :: Function -> Object -> Object
+function mapInput(cmd) {
+  return function (state) {
+    const { input, pointer, tape, } = state;
 
-  // @todo use a better name than cmd
-  const nextBite = cmd(input);
-  const nextTape = [ ...tape, ];
-  nextTape[pointer] = nextBite;
+    tape[pointer] = cmd(input[0]);
 
-  const nextState = {
-    input: input.substring(1),
-    tape: nextTape,
+    state.input = input.substring(1);
+
+    return state;
   };
-
-  return Object.assign({}, lastState, nextState);
 }
 
 module.exports = {
   decrement: partial(mapBite)(decrementBite),
   increment: partial(mapBite)(incrementBite),
-  input: partial(mapInput)(charCodeAt),
+  input: mapInput(charCodeAt),
   moveLeft: partial(mapPointer)(decrementPointer),
   moveRight: partial(mapPointer)(incrementPointer),
   output: partial(mapOutput)(fromCharCode),
