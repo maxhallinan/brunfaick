@@ -6,8 +6,12 @@ const { deepClone, } = require('../../../../util');
 describe('unit > interpreter > commands > input', () => {
   let initialState;
 
-  before(() => {
+  beforeEach(() => {
     initialState = initState('foo').fold();
+  });
+
+  afterEach(() => {
+    initialState = null;
   });
 
   it('Should set state.tape[pointer] to the charCode for input[0].', () => {

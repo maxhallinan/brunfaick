@@ -5,7 +5,6 @@ const {
   increment,
   isNan,
   fromCharCode,
-  partial,
 } = require('../util');
 
 // validateIncrementBite :: Number -> Number
@@ -67,35 +66,29 @@ const decrementPointer = compose(
   decrement
 );
 
-// mapBite :: (Function, Object) -> Object
+// mapBite :: Function -> Object -> Object
 function mapBite(cmd) {
-  return function () {
-
-  };
-  const { pointer, tape, } = lastState;
-
-  const lastBite = tape[pointer];
-  // @todo use a more descriptive name than cmd
-  const nextBite = cmd(lastBite);
-
-  const nextTape = [ ...tape, ];
-  nextTape[pointer] = nextBite;
-
-  const nextState = { tape: nextTape, };
-
-  return Object.assign({}, lastState, nextState);
-}
-
-// mapPointer :: (Function, Object) -> Object
-function mapPointer(cmd) {
   return function (state) {
-    state.pointer = cmd(state.pointer);
+    const { pointer, tape, } = state;
+
+    state.tape[pointer] = cmd(tape[pointer]);
 
     return state;
   };
 }
 
-// mapOutput :: (Function, Object) -> Object
+// mapPointer :: Function -> Object -> Object
+function mapPointer(cmd) {
+  return function (state) {
+    const { pointer, } = state;
+
+    state.pointer = cmd(pointer);
+
+    return state;
+  };
+}
+
+// mapOutput :: Function -> Object -> Object
 function mapOutput(cmd) {
   return function (state) {
     const { output, pointer, tape, } = state;
@@ -109,9 +102,9 @@ function mapOutput(cmd) {
 // mapInput :: Function -> Object -> Object
 function mapInput(cmd) {
   return function (state) {
-    const { input, pointer, tape, } = state;
+    const { input, pointer, } = state;
 
-    tape[pointer] = cmd(input);
+    state.tape[pointer] = cmd(input);
 
     state.input = input.substring(1);
 
@@ -120,8 +113,8 @@ function mapInput(cmd) {
 }
 
 module.exports = {
-  decrement: partial(mapBite)(decrementBite),
-  increment: partial(mapBite)(incrementBite),
+  decrement: mapBite(decrementBite),
+  increment: mapBite(incrementBite),
   input: mapInput(charCodeAt),
   moveLeft: mapPointer(decrementPointer),
   moveRight: mapPointer(incrementPointer),

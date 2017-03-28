@@ -6,8 +6,12 @@ const { deepClone, } = require('../../../../util');
 describe('unit > interpreter > commands > output', () => {
   let initialState;
 
-  before(() => {
+  beforeEach(() => {
     initialState = initState('foo').fold();
+  });
+
+  afterEach(() => {
+    initialState = null;
   });
 
   it('Should sets state.output to the char value of tape[pointer].', () => {

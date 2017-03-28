@@ -6,8 +6,12 @@ const { deepClone, } = require('../../../../util');
 describe('unit > interpreter > commands > move-right', () => {
   let initialState;
 
-  before(() => {
+  beforeEach(() => {
     initialState = initState('foo').fold();
+  });
+
+  afterEach(() => {
+    initialState = null;
   });
 
   it('Should set state.pointer to one more than last value.', () => {

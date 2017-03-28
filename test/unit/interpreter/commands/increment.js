@@ -6,8 +6,12 @@ const { deepClone, } = require('../../../../util');
 describe('unit > interpreter > commands > increment', () => {
   let initialState;
 
-  before(() => {
+  beforeEach(() => {
     initialState = initState('foo').fold();
+  });
+
+  afterEach(() => {
+    initialState = null;
   });
 
   it('Should set value of state.tape[pointer].', () => {
@@ -17,7 +21,10 @@ describe('unit > interpreter > commands > increment', () => {
 
     const nextState = increment(lastState);
 
-    const expected = deepClone(lastState);
+    const expected = Object.assign(deepClone(initialState), {
+      pointer: 2,
+    });
+
     expected.tape[expected.pointer] = 1;
 
     assert.deepEqual(nextState, expected);
