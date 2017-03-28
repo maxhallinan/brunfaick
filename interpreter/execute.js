@@ -1,3 +1,4 @@
+const { isNan, } = require('../util');
 const commands = require('./commands');
 
 const typeToCmd = {
@@ -36,9 +37,20 @@ function getNextState(state, command) {
   return state;
 }
 
+function validateNextState(state) {
+  if (isNan(state.pointer) || state.pointer < 0) {
+    throw new RangeError(
+      'Your program used the < command one too many times in a row. ' +
+      'There is no memory at cell -1.'
+    );
+  }
+
+  return state;
+}
+
 function execute(tokens, state) {
   for (let i = 0, j = tokens.length; i < j; i++) {
-    state = getNextState(state, tokens[i]);
+    state = validateNextState(getNextState(state, tokens[i]));
   }
 
   return state;

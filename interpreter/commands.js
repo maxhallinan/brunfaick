@@ -23,25 +23,6 @@ function validateDecrementBite(bite) {
   return bite;
 }
 
-// validatePointer :: Number -> Number
-function validatePointer(pointer) {
-  if (isNan(pointer) || pointer < 0) {
-    throw new RangeError(
-      'Your program used the < command one too many times in a row. ' +
-      'There is no memory at cell -1.'
-    );
-  }
-
-  if (pointer > 30000) {
-    throw new RangeError(
-      'Your program has used the > command one too many times. ' +
-      'There is a 30,000 cell memory limit.'
-    );
-  }
-
-  return pointer;
-}
-
 // incrementBite :: Number -> Number
 const incrementBite = compose(
   validateIncrementBite,
@@ -51,18 +32,6 @@ const incrementBite = compose(
 // decrementBite :: Number -> Number
 const decrementBite = compose(
   validateDecrementBite,
-  decrement
-);
-
-// incrementPointer :: Number -> Number
-const incrementPointer = compose(
-  validatePointer,
-  increment
-);
-
-// decrementPointer :: Number -> Number
-const decrementPointer = compose(
-  validatePointer,
   decrement
 );
 
@@ -116,8 +85,8 @@ module.exports = {
   decrement: mapBite(decrementBite),
   increment: mapBite(incrementBite),
   input: mapInput(charCodeAt),
-  moveLeft: mapPointer(decrementPointer),
-  moveRight: mapPointer(incrementPointer),
+  moveLeft: mapPointer(decrement),
+  moveRight: mapPointer(increment),
   output: mapOutput(fromCharCode),
 };
 

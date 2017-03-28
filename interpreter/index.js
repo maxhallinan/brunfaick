@@ -1,12 +1,9 @@
-const { compose, } = require('../util');
 const execute = require('./execute');
 const initState = require('./init-state');
 const output = require('./output');
 
-module.exports = (tokens, input) => compose(
-  output,
-  compose(
-    state => execute(tokens, state),
-    initState
-  )
-)(input);
+module.exports = function (tokens, input) {
+  const state = initState(input);
+
+  return output(execute(tokens, state));
+};
