@@ -1,30 +1,32 @@
-const test = require('ava');
+const assert = require('chai').assert;
 const lex = require('../../../parser/lex');
 
-test('Maps Brainfuck command characters to tokens.', t => {
-  const cmdStr = '-+,[]<>.';
+describe('unit > parser > lex', () => {
+  it('Should map Brainfuck commands to tokens.', () => {
+    const cmdStr = '-+,[]<>.';
 
-  const result = lex(cmdStr);
+    const result = lex(cmdStr);
 
-  const expected = [
-    {
-      type: 'DECREMENT',
-    }, {
-      type: 'INCREMENT',
-    }, {
-      type: 'INPUT',
-    }, {
-      type: 'LOOP_START',
-    }, {
-      type: 'LOOP_END',
-    }, {
-      type: 'MOVE_LEFT',
-    }, {
-      type: 'MOVE_RIGHT',
-    }, {
-      type: 'OUTPUT',
-    },
-  ];
+    const expected = [
+      {
+        type: 'DECREMENT',
+      }, {
+        type: 'INCREMENT',
+      }, {
+        type: 'INPUT',
+      }, {
+        type: 'LOOP_START',
+      }, {
+        type: 'LOOP_END',
+      }, {
+        type: 'MOVE_LEFT',
+      }, {
+        type: 'MOVE_RIGHT',
+      }, {
+        type: 'OUTPUT',
+      },
+    ];
 
-  t.deepEqual(result, expected);
+    assert.deepEqual(result, expected);
+  });
 });

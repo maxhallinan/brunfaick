@@ -1,61 +1,68 @@
-const test = require('ava');
+const assert = require('assert');
 const { decrement, } = require('../../../../interpreter/commands');
 const initState = require('../../../../interpreter/init-state');
 const { deepClone, } = require('../../../../util');
 
-const initialState = initState('foo').fold();
+describe('unit > interpreter > commands > decrement', () => {
+  let initialState;
 
-test('Sets value of state.tape[pointer].', t => {
-  const lastState = Object.assign(deepClone(initialState), {
-    pointer: 2,
-    foo: 'bar',
+  before(() => {
+    initialState = initState('foo').fold();
   });
 
-  const nextState = decrement(lastState);
+  it('Should set the value of state.tape[pointer].', () => {
+    const lastState = Object.assign(deepClone(initialState), {
+      pointer: 2,
+      foo: 'bar',
+    });
 
-  const expected = deepClone(lastState);
-  expected.tape[expected.pointer] = 255;
+    const nextState = decrement(lastState);
 
-  t.deepEqual(nextState, expected);
+    const expected = deepClone(lastState);
+    expected.tape[expected.pointer] = 255;
+
+    assert.deepEqual(nextState, expected);
+  });
+
+  it('Should set state.tape[pointer] to one less than last value.', () => {
+    const lastState = Object.assign(deepClone(initialState), {
+      tape: [ 1, ],
+      foo: 'baz',
+    });
+
+    const nextState = decrement(lastState);
+
+    const expected = Object.assign(deepClone(lastState), {
+      tape: [ 0, ],
+    });
+
+    assert.deepEqual(nextState, expected);
+  });
+
+  it('Should set state.tape[pointer] to 255 if last value is 0.', () => {
+    const lastState = Object.assign(deepClone(initialState), {
+      tape: [ 0, ],
+    });
+
+    const nextState = decrement(lastState);
+
+    const expected = Object.assign(deepClone(lastState), {
+      tape: [ 255, ],
+    });
+
+    assert.deepEqual(nextState, expected);
+  });
+
+  it('Should set state.tape[pointer] to 255 if last value is undefined.', () => {
+    const lastState = deepClone(initialState);
+
+    const nextState = decrement(lastState);
+
+    const expected = Object.assign(deepClone(lastState), {
+      tape: [ 255, ],
+    });
+
+    assert.deepEqual(nextState, expected);
+  });
 });
 
-test('Sets state.tape[pointer] to one less than last value.', t => {
-  const lastState = Object.assign(deepClone(initialState), {
-    tape: [ 1, ],
-    foo: 'baz',
-  });
-
-  const nextState = decrement(lastState);
-
-  const expected = Object.assign(deepClone(lastState), {
-    tape: [ 0, ],
-  });
-
-  t.deepEqual(nextState, expected);
-});
-
-test('Sets state.tape[pointer] to 255 if last value is 0.', t => {
-  const lastState = Object.assign(deepClone(initialState), {
-    tape: [ 0, ],
-  });
-
-  const nextState = decrement(lastState);
-
-  const expected = Object.assign(deepClone(lastState), {
-    tape: [ 255, ],
-  });
-
-  t.deepEqual(nextState, expected);
-});
-
-test('Sets state.tape[pointer] to 255 if last value is undefined.', t => {
-  const lastState = deepClone(initialState);
-
-  const nextState = decrement(lastState);
-
-  const expected = Object.assign(deepClone(lastState), {
-    tape: [ 255, ],
-  });
-
-  t.deepEqual(nextState, expected);
-});

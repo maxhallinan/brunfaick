@@ -1,22 +1,29 @@
-const test = require('ava');
+const assert = require('chai').assert;
 const { input, } = require('../../../../interpreter/commands');
 const initState = require('../../../../interpreter/init-state');
 const { deepClone, } = require('../../../../util');
 
-const initialState = initState('foo').fold();
+describe('unit > interpreter > commands > input', () => {
+  let initialState;
 
-test('Sets state.tape[pointer] to the charCode for input[0].', t => {
-  const lastState = deepClone(initialState);
+  before(() => {
+    initialState = initState('foo').fold();
+  });
 
-  const nextState = input(lastState);
+  it('Should set state.tape[pointer] to the charCode for input[0].', () => {
+    const lastState = deepClone(initialState);
 
-  t.deepEqual(nextState.tape, [ 102, ]);
+    const nextState = input(lastState);
+
+    assert.deepEqual(nextState.tape, [ 102, ]);
+  });
+
+  it('Should remove the first character from state.input.', () => {
+    const lastState = deepClone(initialState);
+
+    const nextState = input(lastState);
+
+    assert.deepEqual(nextState.input, 'oo');
+  });
 });
 
-test('Removes the first character from state.input.', t => {
-  const lastState = deepClone(initialState);
-
-  const nextState = input(lastState);
-
-  t.deepEqual(nextState.input, 'oo');
-});

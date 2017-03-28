@@ -14,8 +14,8 @@
     "node": ">=6"
   },
   "scripts": {
-    "test": "xo && nyc ava",
-    "test-dev": "nyc ava --watch test/unit"
+    "test": "xo && mocha test/**/* --timeout=40000",
+    "test-dev": "mocha --watch test/unit/**/*"
   },
   "files": [
     "index.js",
@@ -36,13 +36,17 @@
     "meow": "^3.7.0"
   },
   "devDependencies": {
-    "ava": "^0.17.0",
-    "nyc": "^10.0.0",
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
     "xo": "^0.17.0"
   },
   "xo": {
     "esnext": true,
-    "space": 2,
+    "globals": [
+      "before",
+      "describe",
+      "it"
+    ],
     "rules": {
       "array-bracket-spacing": [
         "error",
@@ -62,6 +66,7 @@
         "error",
         "always"
       ]
-    }
+    },
+    "space": 2
   }
 }

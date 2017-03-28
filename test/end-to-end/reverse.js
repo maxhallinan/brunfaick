@@ -1,20 +1,21 @@
-const test = require('ava');
+const assert = require('chai').assert;
 const brunfaick = require('../../.');
 
-test('Outputs the input string reversed.', t => {
-  const program = `
+describe('end-to-end > reverse.b', () => {
+  it('Should return the expected output', () => {
+    const program = `
     [Revers, promyk.doleczek.pl]
     >+[[>],.----- ----- ---[+++++ +++++ +++[<]]>]
     <<[<]>[-]>[>]<
     [.<]
-  `;
+    `;
 
-  const input = 'foo bar baz';
+    const input = 'foo bar baz';
 
-  const result = brunfaick(program, input);
+    const output = brunfaick(program, input);
 
-  const expected = 'foo bar baz\u0000zab rab oof';
+    const expected = 'foo bar baz\u0000zab rab oof';
 
-  t.is(result, expected);
+    assert.strictEqual(expected, output);
+  });
 });
-

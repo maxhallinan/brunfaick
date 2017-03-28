@@ -1,20 +1,26 @@
-const test = require('ava');
+const assert = require('chai').assert;
 const { output, } = require('../../../../interpreter/commands');
 const initState = require('../../../../interpreter/init-state');
 const { deepClone, } = require('../../../../util');
 
-const initialState = initState('foo').fold();
+describe('unit > interpreter > commands > output', () => {
+  let initialState;
 
-test('Sets state.output to the char value of tape[pointer].', t => {
-  const lastState = Object.assign(deepClone(initialState), {
-    tape: [ 102, ],
+  before(() => {
+    initialState = initState('foo').fold();
   });
 
-  const nextState = output(lastState);
+  it('Should sets state.output to the char value of tape[pointer].', () => {
+    const lastState = Object.assign(deepClone(initialState), {
+      tape: [ 102, ],
+    });
 
-  const expected = Object.assign(deepClone(lastState), {
-    output: 'f',
+    const nextState = output(lastState);
+
+    const expected = Object.assign(deepClone(lastState), {
+      output: 'f',
+    });
+
+    assert.deepEqual(nextState, expected);
   });
-
-  t.deepEqual(nextState, expected);
 });
