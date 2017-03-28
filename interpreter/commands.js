@@ -84,15 +84,12 @@ function mapBite(cmd, lastState) {
 }
 
 // mapPointer :: (Function, Object) -> Object
-function mapPointer(cmd, lastState) {
-  const { pointer, } = lastState;
+function mapPointer(cmd) {
+  return function (state) {
+    state.pointer = cmd(state.pointer);
 
-  // @todo use a more descriptive name than cmd
-  const nextPointer = cmd(pointer);
-
-  const nextState = { pointer: nextPointer, };
-
-  return Object.assign({}, lastState, nextState);
+    return state;
+  };
 }
 
 // mapOutput :: (Function, Object) -> Object
@@ -123,7 +120,7 @@ module.exports = {
   decrement: partial(mapBite)(decrementBite),
   increment: partial(mapBite)(incrementBite),
   input: mapInput(charCodeAt),
-  moveLeft: partial(mapPointer)(decrementPointer),
-  moveRight: partial(mapPointer)(incrementPointer),
+  moveLeft: mapPointer(decrementPointer),
+  moveRight: mapPointer(incrementPointer),
   output: mapOutput(fromCharCode),
 };
