@@ -68,7 +68,10 @@ const decrementPointer = compose(
 );
 
 // mapBite :: (Function, Object) -> Object
-function mapBite(cmd, lastState) {
+function mapBite(cmd) {
+  return function () {
+
+  };
   const { pointer, tape, } = lastState;
 
   const lastBite = tape[pointer];
@@ -108,7 +111,7 @@ function mapInput(cmd) {
   return function (state) {
     const { input, pointer, tape, } = state;
 
-    tape[pointer] = cmd(input[0]);
+    tape[pointer] = cmd(input);
 
     state.input = input.substring(1);
 
