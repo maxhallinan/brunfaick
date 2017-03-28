@@ -1,26 +1,29 @@
-const test = require('ava');
+const assert = require('chai').assert;
 const initState = require('../../../interpreter/init-state');
 const Container = require('../../../types/container');
 
-test('Instantiates state tree with initial values.', t => {
-  const input = 'foo';
+describe('unit > interpreter > init-state', () => {
+  it('Should instantiate the state tree with initial values.', () => {
+    const input = 'foo';
 
-  const initialState = initState(input).fold();
+    const initialState = initState(input).fold();
 
-  const expected = {
-    input,
-    output: '',
-    pointer: 0,
-    tape: [],
-  };
+    const expected = {
+      input,
+      output: '',
+      pointer: 0,
+      tape: [],
+    };
 
-  t.deepEqual(initialState, expected);
+    assert.deepEqual(initialState, expected);
+  });
+
+  it('Should wrap the state tree in a Container type', () => {
+    const input = 'foo';
+
+    const initialState = initState(input);
+
+    assert.instanceOf(initialState, Container);
+  });
 });
 
-test('Wraps state tree in a Container type', t => {
-  const input = 'foo';
-
-  const initialState = initState(input);
-
-  t.truthy(initialState instanceof Container);
-});
