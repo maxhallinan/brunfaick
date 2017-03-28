@@ -6,9 +6,7 @@ describe('unit > interpreter > output', () => {
   it('Should return state.output.', () => {
     const foo = 'foo';
 
-    const state = initState().map(
-      state => Object.assign({}, state, { output: foo, })
-    );
+    const state = Object.assign(initState(), { output: foo, });
 
     const result = output(state);
 

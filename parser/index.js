@@ -5,6 +5,8 @@ const parse = require('./parse');
 
 module.exports = compose(
   parse,
-  lex,
-  clean
+  compose(
+    lex,
+    clean
+  )
 );

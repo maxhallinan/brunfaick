@@ -43,7 +43,8 @@
   "xo": {
     "esnext": true,
     "globals": [
-      "before",
+      "afterEach",
+      "beforeEach",
       "describe",
       "it"
     ],
@@ -65,7 +66,8 @@
       "object-curly-spacing": [
         "error",
         "always"
-      ]
+      ],
+      "no-self-compare": 1
     },
     "space": 2
   }

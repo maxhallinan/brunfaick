@@ -51,11 +51,11 @@ describe('unit > interpreter > execute', () => {
 
     const result = execute(ast, state);
 
-    const expected = initState().map(state => Object.assign({}, state, {
+    const expected = Object.assign(initState(), {
       output: 'H',
       pointer: 3,
       tape: [ 0, 0, 0, 72, ],
-    }));
+    });
 
     assert.deepEqual(result, expected);
   });

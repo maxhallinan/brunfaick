@@ -1,4 +1,4 @@
-const { map, partial, reduce, } = require('../util');
+const { isNan, } = require('../util');
 const commands = require('./commands');
 
 const typeToCmd = {
@@ -37,10 +37,23 @@ function getNextState(state, command) {
   return state;
 }
 
-function execute(tokens, state) {
-  return reduce(getNextState, state, tokens);
+function validateNextState(state) {
+  if (isNan(state.pointer) || state.pointer < 0) {
+    throw new RangeError(
+      'Your program used the < command one too many times in a row. ' +
+      'There is no memory at cell -1.'
+    );
+  }
+
+  return state;
 }
 
-module.exports = function (tokens, state) {
-  return map(partial(execute)(tokens))(state);
-};
+function execute(tokens, state) {
+  for (let i = 0, j = tokens.length; i < j; i++) {
+    state = validateNextState(getNextState(state, tokens[i]));
+  }
+
+  return state;
+}
+
+module.exports = execute;
