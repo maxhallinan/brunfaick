@@ -10,7 +10,7 @@ _.assign = target => (...sources) => Object.assign(target, ...sources);
 _.charCodeAt = str => str.charCodeAt();
 
 // compose :: [Function] -> (a -> b)
-_.compose = (...fns) => x => [ ...fns, ].reverse().reduce((x, fn) => fn(x), x);
+_.compose = (a, b) => x => a(b(x));
 
 // curry :: (* -> a) -> Number -> (* -> a)
 _.curry = function (fn, arity = fn.length) {

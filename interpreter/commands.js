@@ -1,12 +1,11 @@
 const {
   charCodeAt,
+  compose,
   decrement,
   increment,
   isNan,
   fromCharCode,
 } = require('../util');
-
-const compose = (a, b) => x => a(b(x));
 
 // validateIncrementBite :: Number -> Number
 function validateIncrementBite(bite) {
