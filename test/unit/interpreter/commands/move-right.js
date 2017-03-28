@@ -1,27 +1,16 @@
 const assert = require('chai').assert;
 const { moveRight, } = require('../../../../interpreter/commands');
 const initState = require('../../../../interpreter/init-state');
-const { deepClone, } = require('../../../../util');
 
 describe('unit > interpreter > commands > move-right', () => {
-  let initialState;
-
-  beforeEach(() => {
-    initialState = initState('foo');
-  });
-
-  afterEach(() => {
-    initialState = null;
-  });
-
   it('Should set state.pointer to one more than last value.', () => {
-    const lastState = Object.assign(deepClone(initialState), {
+    const lastState = Object.assign(initState(), {
       pointer: 2,
     });
 
     const nextState = moveRight(lastState);
 
-    const expected = Object.assign(deepClone(lastState), {
+    const expected = Object.assign(initState(), {
       pointer: 3,
     });
 
@@ -29,7 +18,7 @@ describe('unit > interpreter > commands > move-right', () => {
   });
 
   it('Should throws Error if state.pointer is greater than 30000.', () => {
-    const lastState = Object.assign(deepClone(initialState), { pointer: 30000, });
+    const lastState = Object.assign(initState(), { pointer: 30000, });
 
     assert.throws(
       () => moveRight(lastState),
