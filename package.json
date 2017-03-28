@@ -14,8 +14,8 @@
     "node": ">=6"
   },
   "scripts": {
-    "test": "xo && nyc ava",
-    "test-dev": "nyc ava --watch test/unit"
+    "test": "xo && mocha test/**/* --timeout=40000",
+    "test-dev": "mocha --watch test/unit/**/*"
   },
   "files": [
     "index.js",
@@ -44,7 +44,11 @@
   },
   "xo": {
     "esnext": true,
-    "globals": ["describe", "it"],
+    "globals": [
+      "before",
+      "describe",
+      "it"
+    ],
     "rules": {
       "array-bracket-spacing": [
         "error",

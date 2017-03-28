@@ -3,9 +3,13 @@ const { increment, } = require('../../../../interpreter/commands');
 const initState = require('../../../../interpreter/init-state');
 const { deepClone, } = require('../../../../util');
 
-const initialState = initState('foo').fold();
-
 describe('unit > interpreter > commands > increment', () => {
+  let initialState;
+
+  before(() => {
+    initialState = initState('foo').fold();
+  });
+
   it('Should set value of state.tape[pointer].', () => {
     const lastState = Object.assign(deepClone(initialState), {
       pointer: 2,

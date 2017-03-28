@@ -3,9 +3,13 @@ const { moveLeft, } = require('../../../../interpreter/commands');
 const initState = require('../../../../interpreter/init-state');
 const { deepClone, } = require('../../../../util');
 
-const initialState = initState('foo').fold();
-
 describe('unit > interpreter > commands > move-left', () => {
+  let initialState;
+
+  before(() => {
+    initialState = initState('foo').fold();
+  });
+
   it('Should set state.pointer to one less than last value.', () => {
     const lastState = Object.assign(deepClone(initialState), {
       pointer: 2,
