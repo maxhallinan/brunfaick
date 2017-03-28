@@ -1,30 +1,30 @@
-const test = require('ava');
+const assert = require('chai').assert;
 const { moveLeft, } = require('../../../../interpreter/commands');
 const initState = require('../../../../interpreter/init-state');
 const { deepClone, } = require('../../../../util');
 
 const initialState = initState('foo').fold();
 
-test('Sets state.pointer to one less than last value.', t => {
-  const lastState = Object.assign(deepClone(initialState), {
-    pointer: 2,
+describe('unit > interpreter > commands > move-left', () => {
+  it('Should set state.pointer to one less than last value.', () => {
+    const lastState = Object.assign(deepClone(initialState), {
+      pointer: 2,
+    });
+
+    const nextState = moveLeft(lastState);
+
+    const expected = Object.assign(deepClone(lastState), {
+      pointer: 1,
+    });
+
+    assert.deepEqual(nextState, expected);
   });
 
-  const nextState = moveLeft(lastState);
-
-  const expected = Object.assign(deepClone(lastState), {
-    pointer: 1,
+  it('Should throws RangeError if state.pointer is set to less than 0.', () => {
+    assert.throws(
+      () => moveLeft(initState()),
+      RangeError,
+      /Your program used the < command one too many times in a row. There is no memory at cell -1./
+    );
   });
-
-  t.deepEqual(nextState, expected);
-});
-
-test('Throws RangeError if state.pointer is set to less than 0.', t => {
-  const error = t.throws(() => {
-    const lastState = deepClone(initialState);
-
-    moveLeft(lastState);
-  }, RangeError);
-
-  t.is(error.message, 'Your program used the < command one too many times in a row. There is no memory at cell -1.');
 });
