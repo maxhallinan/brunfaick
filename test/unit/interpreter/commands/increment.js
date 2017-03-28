@@ -7,7 +7,7 @@ describe('unit > interpreter > commands > increment', () => {
   let initialState;
 
   beforeEach(() => {
-    initialState = initState('foo').fold();
+    initialState = initState('foo');
   });
 
   afterEach(() => {

@@ -1,6 +1,5 @@
 const assert = require('chai').assert;
 const initState = require('../../../interpreter/init-state');
-const Container = require('../../../types/container');
 
 describe('unit > interpreter > init-state', () => {
   let initialState;
@@ -8,7 +7,7 @@ describe('unit > interpreter > init-state', () => {
   beforeEach(() => {
     const input = 'foo';
 
-    initialState = initState(input).fold();
+    initialState = initState(input);
   });
 
   afterEach(() => {
@@ -24,10 +23,6 @@ describe('unit > interpreter > init-state', () => {
     };
 
     assert.deepEqual(initialState, expected);
-  });
-
-  it('Should wrap the state tree in a Container type', () => {
-    assert.instanceOf(initState(), Container);
   });
 });
 

@@ -7,7 +7,7 @@ describe('unit > interpreter > commands > input', () => {
   let initialState;
 
   beforeEach(() => {
-    initialState = initState('foo').fold();
+    initialState = initState('foo');
   });
 
   afterEach(() => {

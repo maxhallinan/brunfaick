@@ -7,7 +7,7 @@ describe('unit > interpreter > commands > move-right', () => {
   let initialState;
 
   beforeEach(() => {
-    initialState = initState('foo').fold();
+    initialState = initState('foo');
   });
 
   afterEach(() => {

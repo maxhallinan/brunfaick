@@ -1,4 +1,3 @@
-const { map, partial, reduce, } = require('../util');
 const commands = require('./commands');
 
 const typeToCmd = {
@@ -38,9 +37,7 @@ function getNextState(state, command) {
 }
 
 function execute(tokens, state) {
-  return reduce(getNextState, state, tokens);
+  return tokens.reduce(getNextState, state);
 }
 
-module.exports = function (tokens, state) {
-  return map(partial(execute)(tokens))(state);
-};
+module.exports = execute;
