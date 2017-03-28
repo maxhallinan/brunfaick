@@ -33,7 +33,7 @@ function validatePointer(pointer) {
   }
 
   if (pointer > 30000) {
-    throw new Error(
+    throw new RangeError(
       'Your program has used the > command one too many times. ' +
       'There is a 30,000 cell memory limit.'
     );
