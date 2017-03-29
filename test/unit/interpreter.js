@@ -1,5 +1,6 @@
 const assert = require('chai').assert;
 const interpret = require('../../interpreter');
+const parse = require('../../parser');
 
 function initState(input) {
   return {
@@ -36,7 +37,7 @@ describe('unit > interpreter', () => {
 
   describe('commands > decrement', () => {
     it('Stores the new byte in the correct cell.', () => {
-      const tokens = [ { type: '-', }, ];
+      const tokens = parse('-');
 
       state = Object.assign(
         state,
@@ -54,7 +55,7 @@ describe('unit > interpreter', () => {
     });
 
     it('Decreases the current byte by 1.', () => {
-      const tokens = [ { type: '-', }, ];
+      const tokens = parse('-');
 
       state = Object.assign(state, { tape: [ 3, ], });
 
@@ -66,7 +67,7 @@ describe('unit > interpreter', () => {
     });
 
     it('Wraps from 0 to 255.', () => {
-      const tokens = [ { type: '-', }, ];
+      const tokens = parse('-');
 
       state = Object.assign(state, { tape: [ 0, ], });
 
@@ -78,7 +79,7 @@ describe('unit > interpreter', () => {
     });
 
     it('Treats an undefined byte as 0.', () => {
-      const tokens = [ { type: '-', }, ];
+      const tokens = parse('-');
 
       const result = interpret(tokens, state).tape;
 
@@ -90,7 +91,7 @@ describe('unit > interpreter', () => {
 
   describe('commands > increment', () => {
     it('Stores the new byte at the correct position.', () => {
-      const tokens = [ { type: '+', }, ];
+      const tokens = parse('+');
 
       state = Object.assign(
         state,
@@ -108,7 +109,7 @@ describe('unit > interpreter', () => {
     });
 
     it('Increases the current byte by 1.', () => {
-      const tokens = [ { type: '+', }, ];
+      const tokens = parse('+');
 
       state = Object.assign(state, { tape: [ 3, ], });
 
@@ -120,7 +121,7 @@ describe('unit > interpreter', () => {
     });
 
     it('Wraps from 255 to 0.', () => {
-      const tokens = [ { type: '+', }, ];
+      const tokens = parse('+');
 
       state = Object.assign(state, { tape: [ 255, ], });
 
@@ -132,7 +133,7 @@ describe('unit > interpreter', () => {
     });
 
     it('Treats an undefined byte as 0.', () => {
-      const tokens = [ { type: '+', }, ];
+      const tokens = parse('+');
 
       const result = interpret(tokens, state).tape;
 
@@ -144,7 +145,7 @@ describe('unit > interpreter', () => {
 
   describe('commands > move-left', () => {
     it('Moves the pointer 1 to the left.', () => {
-      const tokens = [ { type: '<', }, ];
+      const tokens = parse('<');
 
       state = Object.assign(state, { pointer: 1, });
 
@@ -156,7 +157,7 @@ describe('unit > interpreter', () => {
     });
 
     it('Throws a RangeError if the next position is out of range.', () => {
-      const tokens = [ { type: '<', }, ];
+      const tokens = parse('<');
 
       assert.throws(() => interpret(tokens, state), RangeError);
     });
@@ -164,7 +165,7 @@ describe('unit > interpreter', () => {
 
   describe('commands > move-right', () => {
     it('Moves the pointer 1 to the right.', () => {
-      const tokens = [ { type: '>', }, ];
+      const tokens = parse('>');
 
       state = Object.assign(state, { pointer: 1, });
 
@@ -177,9 +178,35 @@ describe('unit > interpreter', () => {
   });
 
   describe('commands > loop', () => {
-    it('Repeats the loop until the current byte is 0.', () => {});
-    it('Skips the loop if the current byte is 0.', () => {});
-    it('Runs an arbitrary number of nested loops.', () => {});
+    it('Repeats the loop until the current byte is 0.', () => {
+      const tokens = parse('+++[>+<-]');
+
+      const result = interpret(tokens, state).tape;
+
+      const expected = [ 0, 3, ];
+
+      assert.deepEqual(expected, result)
+    });
+
+    it('Skips the loop if the current byte is 0.', () => {
+      const tokens = parse('[+++++]')
+
+      const result = interpret(tokens, state);
+
+      const expected = state;
+
+      assert.deepEqual(expected, result);
+    });
+
+    it('Runs an arbitrary number of nested loops.', () => {
+      const tokens = parse('+++[>+++[>+++[>+<-]<-]<-]');
+
+      const result = interpret(tokens, state).tape;
+
+      const expected = [ 0, 0, 0, 27, ];
+
+      assert.deepEqual(expected, result);
+    });
   });
 
   describe('commands > input', () => {
