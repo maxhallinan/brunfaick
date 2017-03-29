@@ -89,10 +89,57 @@ describe('unit > interpreter', () => {
   });
 
   describe('commands > increment', () => {
-    it('Stores the new byte at the correct position.', () => {});
-    it('Increases the current byte by 1.', () => {});
-    it('Wraps from 255 to 0.', () => {});
-    it('Treats an undefined byte as 0.', () => {});
+    it('Stores the new byte at the correct position.', () => {
+      const tokens = [ { type: '+', }, ];
+
+      state = Object.assign(
+        state,
+        {
+          pointer: 2,
+          tape: [ , , 3, ],
+        }
+      );
+
+      const result = interpret(tokens, state).tape;
+
+      const expected = [ , , 4, ];
+
+      assert.deepEqual(expected, result);
+    });
+
+    it('Increases the current byte by 1.', () => {
+      const tokens = [ { type: '+', }, ];
+
+      state = Object.assign(state, { tape: [ 3, ], });
+
+      const result = interpret(tokens, state).tape;
+
+      const expected = [ 4, ];
+
+      assert.deepEqual(expected, result);
+    });
+
+    it('Wraps from 255 to 0.', () => {
+      const tokens = [ { type: '+', }, ];
+
+      state = Object.assign(state, { tape: [ 255, ], });
+
+      const result = interpret(tokens, state).tape;
+
+      const expected = [ 0, ];
+
+      assert.deepEqual(expected, result);
+    });
+
+    it('Treats an undefined byte as 0.', () => {
+      const tokens = [ { type: '+', }, ];
+
+      const result = interpret(tokens, state).tape;
+
+      const expected = [ 1, ];
+
+      assert.deepEqual(expected, result);
+    });
   });
 
   describe('commands > move-left', () => {
