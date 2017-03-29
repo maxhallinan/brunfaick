@@ -163,7 +163,17 @@ describe('unit > interpreter', () => {
   });
 
   describe('commands > move-right', () => {
-    it('Moves the pointer 1 to the right.', () => {});
+    it('Moves the pointer 1 to the right.', () => {
+      const tokens = [ { type: '>', }, ];
+
+      state = Object.assign(state, { pointer: 1, });
+
+      const result = interpret(tokens, state).pointer;
+
+      const expected = 2;
+
+      assert.deepEqual(expected, result);
+    });
   });
 
   describe('commands > loop', () => {
