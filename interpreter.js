@@ -1,11 +1,4 @@
-module.exports = function (tokens, input = '') {
-  const state = {
-    input,
-    output: '',
-    pointer: 0,
-    tape: [],
-  };
-
+module.exports = function (tokens, state) {
   const length = tokens.length;
   let i = 0;
 

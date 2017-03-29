@@ -12,6 +12,13 @@ module.exports = (program, input = '') => {
     throw new TypeError(`Expected a string, got ${typeof input}`);
   }
 
-  return interpret(parse(program), input).output;
+  const state = {
+    input,
+    output: '',
+    pointer: 0,
+    tape: [],
+  };
+
+  return interpret(parse(program), state).output;
 };
 
