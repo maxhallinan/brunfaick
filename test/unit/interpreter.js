@@ -143,8 +143,23 @@ describe('unit > interpreter', () => {
   });
 
   describe('commands > move-left', () => {
-    it('Moves the pointer 1 to the left.', () => {});
-    it('Throws a RangeError if the next position is out of range.', () => {});
+    it('Moves the pointer 1 to the left.', () => {
+      const tokens = [ { type: '<', }, ];
+
+      state = Object.assign(state, { pointer: 1, });
+
+      const result = interpret(tokens, state).pointer;
+
+      const expected = 0;
+
+      assert.deepEqual(expected, result);
+    });
+
+    it('Throws a RangeError if the next position is out of range.', () => {
+      const tokens = [ { type: '<', }, ];
+
+      assert.throws(() => interpret(tokens, state), RangeError);
+    });
   });
 
   describe('commands > move-right', () => {
