@@ -55,6 +55,7 @@
         "error",
         "always"
       ],
+      "complexity": 0,
       "unicorn/explicit-length-check": 0,
       "new-cap": [
         "error",
@@ -62,6 +63,7 @@
           "capIsNew": false
         }
       ],
+      "no-loop-func": 0,
       "no-self-compare": 1,
       "object-curly-spacing": [
         "error",
