@@ -54,8 +54,14 @@ $ brunfaick --help
     -i, --input
       Input provided to [program] during execution.
 
+    -f, --file
+      Path to a Brainfuck file.
+
   Examples
     $ brunfaick '++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.'
+      Hello World!
+
+    $ brunfaick -f=hello-world.b
       Hello World!
 ```
 
