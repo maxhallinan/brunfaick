@@ -1,6 +1,6 @@
 {
   "name": "brunfaick",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "A Brainfuck interpreter implemented in JavaScript.",
   "license": "MIT",
   "repository": "maxhallinan/brunfaick",
@@ -57,17 +57,18 @@
         "error",
         "always"
       ],
+      "unicorn/explicit-length-check": 0,
       "new-cap": [
         "error",
         {
           "capIsNew": false
         }
       ],
+      "no-self-compare": 1,
       "object-curly-spacing": [
         "error",
         "always"
-      ],
-      "no-self-compare": 1
+      ]
     },
     "space": 2
   }

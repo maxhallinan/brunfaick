@@ -1,7 +1,7 @@
 'use strict';
 
-const interpreter = require('./interpreter');
-const parser = require('./parser');
+const interpret = require('./interpreter');
+const parse = require('./parser');
 
 module.exports = (program, input = '') => {
   if (typeof program !== 'string') {
@@ -12,5 +12,13 @@ module.exports = (program, input = '') => {
     throw new TypeError(`Expected a string, got ${typeof input}`);
   }
 
-  return interpreter(parser(program), input);
+  const state = {
+    input,
+    output: '',
+    pointer: 0,
+    tape: [],
+  };
+
+  return interpret(parse(program), state).output;
 };
+
