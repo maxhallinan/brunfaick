@@ -55,7 +55,7 @@ module.exports = function (tokens, state) {
     }
 
     if (type === ',') {
-      state.tape[pointer] = state.input.charCodeAt();
+      state.tape[pointer] = state.input.charCodeAt() || 0;
       state.input = state.input.substring(1);
     }
 

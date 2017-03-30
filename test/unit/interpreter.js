@@ -4,7 +4,7 @@ const parse = require('../../parser');
 
 function initState(input) {
   return {
-    input: '',
+    input,
     output: '',
     pointer: 0,
     tape: [],
@@ -210,9 +210,49 @@ describe('unit > interpreter', () => {
   });
 
   describe('commands > input', () => {
-    it('Gets the ASCII code point for the first character of the input string.', () => {});
-    it('Sets the code point as the current byte.', () => {});
-    it('Removes the first character from the input string.', () => {});
+    it('Gets the ASCII code point for the first character of the input string.', () => {
+      const tokens = parse(',');
+
+      const result = interpret(tokens, state).tape[0];
+
+      const expected = 102;
+
+      assert.deepEqual(expected, result);
+    });
+
+    it('Sets the code point as the current byte.', () => {
+      const tokens = parse(',');
+
+      state = Object.assign(state, { pointer: 2, });
+
+      const result = interpret(tokens, state).tape;
+
+      const expected = [ , , 102, ];
+
+      assert.deepEqual(expected, result);
+    });
+
+    it('Removes the first character from the input string.', () => {
+      const tokens = parse(',');
+
+      const result = interpret(tokens, state).input;
+
+      const expected = 'oo';
+
+      assert.deepEqual(expected, result);
+    });
+
+    it('Treats an empty input string as a null character', () => {
+      const tokens = parse(',');
+
+      state = Object.assign(state, { input: '', });
+
+      const result = interpret(tokens, state).tape;
+
+      const expected = [ 0, ];
+
+      assert.deepEqual(expected, result);
+    });
   });
 
   describe('commands > output', () => {
