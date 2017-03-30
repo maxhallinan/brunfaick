@@ -59,9 +59,10 @@ The middleware signature is `(state, tokens, tokenId, isStart) => state`.
 
 - **`isStart`** (`Boolean`): `true` when the middleware is being called at the start of the step.
 
-Each middleware has the option to read from and write to the current state of
-execution before passing that modified state on to the next middleware. Modifying
-`state` or `tokens` will alter the course of execution.
+Each middleware has the option to read from and write to `state`, or pass a
+`state`-like object to the next middleware. The state of execution is replaced
+with the result of the middleware pipeline, unless that result is falsey. Modifying
+`state` or `tokens` will alter the course of execution!
 
 
 ## CLI
