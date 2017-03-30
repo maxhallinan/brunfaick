@@ -1,8 +1,12 @@
-module.exports = function (tokens, state) {
+module.exports = function (tokens, state, middleware) {
   const length = tokens.length;
   let i = 0;
 
   while (i < length) {
+    if (middleware) {
+      state = middlware.reduce((state, fn) => fn(state, tokens, i)) || state;
+    }
+
     const { pointer, tape, } = state;
     const bite = tape[pointer];
 
@@ -63,9 +67,12 @@ module.exports = function (tokens, state) {
       state.output += String.fromCharCode(tape[pointer]);
     }
 
+    if (middleware) {
+      state = middlware.reduce((state, fn) => fn(state, tokens, i)) || state;
+    }
+
     ++i;
   }
 
   return state;
 };
-
