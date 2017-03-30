@@ -50,26 +50,26 @@ Middleware are called in the order they are provided.
 
 The middleware signature is `(state, tokens, tokenId, isStart) => state`.
 
-*state*
+**state**
 
 Type: `Object`
 
 The internal state of execution. `state` has four properties: `input`, `output`,
 `tape`, and `pointer`.
 
-*tokens*
+**tokens**
 
 Type: `Array`
 
 The tokens being executed.
 
-*tokenId*
+**tokenId**
 
 Type: `Number`
 
 Index of the token being processed by the current step.
 
-*isStart*
+**isStart**
 
 Type: `Boolean`
 
