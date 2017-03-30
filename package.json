@@ -20,10 +20,8 @@
   "files": [
     "index.js",
     "cli.js",
-    "interpreter",
-    "parser",
-    "types",
-    "util"
+    "interpreter.js",
+    "parser.js"
   ],
   "keywords": [
     "cli-app",
