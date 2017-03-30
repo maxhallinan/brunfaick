@@ -68,7 +68,7 @@ module.exports = function (tokens, state, middleware) {
     }
 
     if (middleware) {
-      state = middlware.reduce((state, fn) => fn(state, tokens, i)) || state;
+      state = middlware.reduce((state, fn) => fn(state, tokens, i, false)) || state;
     }
 
     ++i;

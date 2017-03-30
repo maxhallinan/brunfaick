@@ -48,14 +48,14 @@ experimental features like realtime visualization of the Brainfuck runtime.
 Each middleware is called at the beginning and end of every execution step.
 Middleware are called in the order they are provided.
 
-The middleware signature is `(state, tokens, tokenId, isStart) => state`.
+The middleware signature is `(state, tokens, tokenId, isStart) -> state`.
 
 - **`state`** (`Object`): The internal state of execution. `state` has four properties: `input`, `output`,
 `pointer`, and `tape`.
 
 - **`tokens`** (`Array`): The tokens being executed.
 
-- **`tokenId`** (`Number`): Index of the token being processed by the current step.
+- **`tokenId`** (`Number`): The index of the token being processed by the current step.
 
 - **`isStart`** (`Boolean`): `true` when the middleware is being called at the start of the step.
 
