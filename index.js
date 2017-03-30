@@ -8,7 +8,7 @@ module.exports = (program, input = '') => {
     throw new TypeError(`Expected a string, got ${typeof program}`);
   }
 
-  if (input && typeof input !== 'string') {
+  if (input !== undefined && typeof input !== 'string') {
     throw new TypeError(`Expected a string, got ${typeof input}`);
   }
 
