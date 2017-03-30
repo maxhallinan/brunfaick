@@ -239,7 +239,7 @@ describe('unit > interpreter', () => {
 
       const expected = 'oo';
 
-      assert.deepEqual(expected, result);
+      assert.strictEqual(expected, result);
     });
 
     it('Treats an empty input string as a null character', () => {
@@ -256,8 +256,27 @@ describe('unit > interpreter', () => {
   });
 
   describe('commands > output', () => {
-    it('Gets the ASCII character at the code point equal to the current byte.', () => {});
-    it('Appends the ASCII character to state.output', () => {});
+    it('Gets the ASCII character at the code point equal to the current byte.', () => {
+      const tokens = parse(',.');
+
+      const result = interpret(tokens, state).output;
+
+      const expected = 'f';
+
+      assert.strictEqual(expected, result);
+    });
+
+    it('Appends the ASCII character to state.output', () => {
+      const tokens = parse(',.');
+
+      state = Object.assign(state, { output: 'bar ', });
+
+      const result = interpret(tokens, state).output;
+
+      const expected = 'bar f';
+
+      assert.strictEqual(expected, result);
+    });
   });
 });
 
