@@ -42,20 +42,38 @@ Input provided to `program` during execution.
 Type: `Function[]`<br>
 Default: `undefined`
 
-Middleware are functions used to extend `brunfaick`. They are intended for
-experimental features like a realtime visualization of the Brainfuck runtime.
+Middleware are functions used to extend `brunfaick`. They are intended to support
+experimental features like realtime visualization of the Brainfuck runtime.
 
 Each middleware is called at the beginning and end of every execution step.
 Middleware are called in the order they are provided.
 
-The middleware signature is `(state, tokens, tokenId) => state`.
+The middleware signature is `(state, tokens, tokenId, isStart) => state`.
 
-`state`: the internal state of execution. `state` has four properties: `input`,
-`output`, `tape`, and `pointer`.
+*state*
 
-`tokens`: the array of tokens being executed.
+Type: `Object`
 
-`tokenId`: the current token.
+The internal state of execution. `state` has four properties: `input`, `output`,
+`tape`, and `pointer`.
+
+*tokens*
+
+Type: `Array`
+
+The tokens being executed.
+
+*tokenId*
+
+Type: `Number`
+
+Index of the token being processed by the current step.
+
+*isStart*
+
+Type: `Boolean`
+
+`true` when the middleware is being called at the start of the step.
 
 Each middleware has the option to read from and write to the current state of
 execution before passing that modified state on to the next middleware. Modifying

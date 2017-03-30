@@ -4,7 +4,7 @@ module.exports = function (tokens, state, middleware) {
 
   while (i < length) {
     if (middleware) {
-      state = middlware.reduce((state, fn) => fn(state, tokens, i)) || state;
+      state = middlware.reduce((state, fn) => fn(state, tokens, i, true)) || state;
     }
 
     const { pointer, tape, } = state;
