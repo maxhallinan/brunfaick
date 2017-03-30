@@ -61,7 +61,7 @@ The middleware signature is `(state, tokens, tokenId, isStart) -> state`.
 
 Each middleware has the option to read from and write to `state`, or pass a
 `state`-like object to the next middleware. The state of execution is replaced
-with the result of the middleware pipeline, unless that result is falsey.
+with the output of the middleware pipeline, unless that result is falsey.
 **Beware**: modifying `state` or `tokens` might break the runtime!
 
 
