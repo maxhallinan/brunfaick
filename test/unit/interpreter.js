@@ -43,13 +43,13 @@ describe('unit > interpreter', () => {
         state,
         {
           pointer: 2,
-          tape: [ , , 3, ],
+          tape: [ undefined, undefined, 3, ],
         }
       );
 
       const result = interpret(tokens, state).tape;
 
-      const expected = [ , , 2, ];
+      const expected = [ undefined, undefined, 2, ];
 
       assert.deepEqual(expected, result);
     });
@@ -97,13 +97,13 @@ describe('unit > interpreter', () => {
         state,
         {
           pointer: 2,
-          tape: [ , , 3, ],
+          tape: [ undefined, undefined, 3, ],
         }
       );
 
       const result = interpret(tokens, state).tape;
 
-      const expected = [ , , 4, ];
+      const expected = [ undefined, undefined, 4, ];
 
       assert.deepEqual(expected, result);
     });
@@ -185,11 +185,11 @@ describe('unit > interpreter', () => {
 
       const expected = [ 0, 3, ];
 
-      assert.deepEqual(expected, result)
+      assert.deepEqual(expected, result);
     });
 
     it('Skips the loop if the current byte is 0.', () => {
-      const tokens = parse('[+++++]')
+      const tokens = parse('[+++++]');
 
       const result = interpret(tokens, state);
 
@@ -227,7 +227,8 @@ describe('unit > interpreter', () => {
 
       const result = interpret(tokens, state).tape;
 
-      const expected = [ , , 102, ];
+      const expected = [];
+      expected[state.pointer] = 102;
 
       assert.deepEqual(expected, result);
     });

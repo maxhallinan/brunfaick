@@ -57,17 +57,18 @@
         "error",
         "always"
       ],
+      "unicorn/explicit-length-check": 0,
       "new-cap": [
         "error",
         {
           "capIsNew": false
         }
       ],
+      "no-self-compare": 1,
       "object-curly-spacing": [
         "error",
         "always"
-      ],
-      "no-self-compare": 1
+      ]
     },
     "space": 2
   }
