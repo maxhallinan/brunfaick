@@ -10,11 +10,11 @@ const help = `
     $ brunfaick [program]
 
   Options
-    -i, --input
-      Input provided to [program] during execution.
-
     -f, --file
       Path to a Brainfuck file.
+
+    -i, --input
+      Input provided to [program] during execution.
 
   Examples
     $ brunfaick '++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.'
