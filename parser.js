@@ -11,7 +11,6 @@ module.exports = function (program) {
   for (let i = 0, starts = 0, ends = 0; i < length; i++) {
     const c = program[i];
 
-    // if newline
     if (c === '\n') {
       ++line;
       character = 1;
@@ -55,7 +54,6 @@ module.exports = function (program) {
       tokens.push(token);
     }
 
-    // if command
     ++character;
   }
 
