@@ -19,6 +19,12 @@ const help = `
   Examples
     $ brunfaick '++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.'
       Hello World!
+
+    $ brunfaick --file=hello-world.b
+      Hello World!
+
+    $ brunfaick --file=wc.b --input='foo bar baz'
+      0 3 11
 `;
 
 const opts = {

@@ -61,8 +61,11 @@ $ brunfaick --help
     $ brunfaick '++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.'
       Hello World!
 
-    $ brunfaick -f=hello-world.b
+    $ brunfaick --file=hello-world.b
       Hello World!
+
+    $ brunfaick --file=wc.b --input='foo bar baz'
+      0 3 11
 ```
 
 
