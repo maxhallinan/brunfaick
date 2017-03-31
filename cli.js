@@ -36,15 +36,13 @@ const file = cli.flags.file;
 
 if (file) {
   fs.readFile(file, 'utf8', (err, program) => {
-    if (err) {
-      throw new Error(err.message);
-    }
+    const output = err ?
+      err.message :
+      brunfaick(program, input);
 
-    console.log(brunfaick(program, input));
+    console.log(output);
   });
-}
-
-if (!file) {
+} else {
   console.log(brunfaick(program, input));
 }
 
