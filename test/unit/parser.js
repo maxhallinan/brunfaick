@@ -2,7 +2,7 @@ const assert = require('chai').assert;
 const parse = require('../../parser');
 
 describe('unit > parser', () => {
-  it('Should map commands to token types.', () => {
+  it('Maps commands to token types.', () => {
     const cmdStr = '+-<>[],.';
 
     const result = parse(cmdStr).map(({ type, }) => type);
@@ -12,7 +12,7 @@ describe('unit > parser', () => {
     assert.deepEqual(result, expected);
   });
 
-  it('Should ignore non-Brainfuck characters.', () => {
+  it('Ignores non-Brainfuck characters.', () => {
     const cmdStr = '"A*$";?@![#>>+<<]>';
 
     const output = parse(cmdStr);
@@ -20,7 +20,7 @@ describe('unit > parser', () => {
     assert.strictEqual(output.length, 8);
   });
 
-  it('Should assign an end value to every [ token.', () => {
+  it('Assigns an end value to every [ token.', () => {
     const program = '+[--[[]]]';
 
     const ends = parse(program).filter(t => t.type === '[').map(({ end, }) => end);
@@ -28,7 +28,7 @@ describe('unit > parser', () => {
     assert.deepEqual(ends, [ 8, 7, 6, ]);
   });
 
-  it('Should assign a start value to every ] token.', () => {
+  it('Assigns a start value to every ] token.', () => {
     const program = '+[--[[]]]';
 
     const starts = parse(program).filter(t => t.type === ']').map(({ start, }) => start);
@@ -36,7 +36,7 @@ describe('unit > parser', () => {
     assert.deepEqual(starts, [ 5, 4, 1, ]);
   });
 
-  it('Should record a line number for every token.', () => {
+  it('Records a line number for every token.', () => {
     const program = '< + \n[]\n-  -\n.';
 
     const lines = parse(program).map(({ line, }) => line);
@@ -46,7 +46,7 @@ describe('unit > parser', () => {
     assert.deepEqual(lines, expected);
   });
 
-  it('Should record a character number for every token.', () => {
+  it('Records a character number for every token.', () => {
     const program = '< + \n[]\n-  -\n.';
 
     const characters = parse(program).map(({ character, }) => character);
@@ -56,7 +56,7 @@ describe('unit > parser', () => {
     assert.deepEqual(characters, expected);
   });
 
-  it('Should throw a SyntaxError if unmatched brackets are found.', () => {
+  it('Throws a SyntaxError if unmatched brackets are found.', () => {
     assert.throws(
       () => {
         parse('+++++[>+++++++>++<<-]>.>.][');
@@ -70,7 +70,7 @@ describe('unit > parser', () => {
         parse('+++++[>+++++++>++<<-]>.>.[');
       },
       SyntaxError,
-      'An unmatched [ found at line 1, character 26.\n      Don\'t forget to close your loops!'
+      'An unmatched [ was found at line 1, character 26.\n      Don\'t forget to close your loops!'
     );
   });
 });

@@ -61,7 +61,7 @@ module.exports = function (program) {
     const { line, character, } = locations.shift();
 
     throw new SyntaxError(
-      `An unmatched [ found at line ${line}, character ${character}.
+      `An unmatched [ was found at line ${line}, character ${character}.
       Don't forget to close your loops!`
     );
   }
